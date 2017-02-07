@@ -38,13 +38,7 @@ public class ResourceController<T extends Resource> {
 		resourceDao.delete(id);
 	}
 	
-	public ResourceDao<T> getResourceDao() {
-		return resourceDao;
-	}
-
-	public void setResourceDao(ResourceDao<T> resourceDao) {
-		this.resourceDao = resourceDao;
-	}
+	
 	
 	
 	

@@ -15,4 +15,6 @@ public interface ResourceDao<T extends Resource> {
 	public void update(T item);
 
 	public void add(T t);
+	
+	
 }
