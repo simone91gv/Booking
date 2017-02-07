@@ -10,7 +10,7 @@ public interface ResourceDao<T extends Resource> {
 	
 	public T getById(String id);
 	
-	public void delete(T item);
+	public void delete(String id);
 	
 	public void update(T item);
 

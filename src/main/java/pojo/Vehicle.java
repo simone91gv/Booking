@@ -1,11 +1,14 @@
 package pojo;
 
-public class Vehicle extends Resource {
+import java.io.Serializable;
 
+public class Vehicle extends Resource implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String brand;
 	private String model;
 	private int displacement;
-	private String plate;
 	private String supplyType;
 	
 	
@@ -43,17 +46,6 @@ public class Vehicle extends Resource {
 		this.displacement = displacement;
 	}
 
-
-	public String getPlate() {
-		return plate;
-	}
-
-
-	public void setPlate(String plate) {
-		this.plate = plate;
-	}
-
-
 	public String getSupplyType() {
 		return supplyType;
 	}
@@ -66,10 +58,13 @@ public class Vehicle extends Resource {
 
 	@Override
 	public String toString() {
-		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", plate=" + plate
-				+ ", supplyType=" + supplyType + ", getId()=" + super.getId() + ", getDescription()=" + super.getDescription()
-				+ "]";
+		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", supplyType="
+				+ supplyType + ", getId()=" + getId() + ", getDescription()=" + getDescription() + "]";
 	}
+	
+	
+
+
 	
 	
 	

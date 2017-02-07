@@ -17,11 +17,10 @@ public class VehicleDao implements ResourceDao<Vehicle> {
 		v1.setModel("PUNTO");
 		v1.setDescription("The first business car of the company");
 		v1.setDisplacement(1400);
-		v1.setPlate("EK159NJ");
 		v1.setSupplyType("BENZINA");
 		
 		//aggiunta alla tree map
-		vehicles.put(v1.getPlate(), v1);
+		vehicles.put(v1.getId(), v1);
 	}
 
 	public TreeMap<String, Vehicle> findAll() {
@@ -30,23 +29,20 @@ public class VehicleDao implements ResourceDao<Vehicle> {
 	}
 
 	public void add(Vehicle item) {
-		
-		String plate = item.getPlate();
-		
-		vehicles.put(plate, item);
+		vehicles.put(item.getId(), item);
 	}
-
-	public void delete(Vehicle item) {
-		// TODO Auto-generated method stub
+	
+	public void delete(String id) {
+		vehicles.remove(id);	
 	}
-
 	public void update(Vehicle item) {
-		// TODO Auto-generated method stub
+		vehicles.put(item.getId(), item);
 	}
 
 	public Vehicle getById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return vehicles.get(id);
 	}
+
+	
 
 }

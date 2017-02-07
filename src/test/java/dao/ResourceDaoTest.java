@@ -29,14 +29,6 @@ public class ResourceDaoTest {
 		
 		resourceController = new ResourceController<Vehicle>(new VehicleDao());
 		
-		TreeMap<String,Vehicle> vlist = resourceController.findAll();
-		
-		for(String i : vlist.keySet()){
-			
-			System.out.println("chiave" + i);
-			System.out.println(vlist.get(i).getBrand()+ " \t" + vlist.get(i).getModel());
-		}
-		
 		//creazione nuovo veicolo (simulazione di aggiunta nuovo veicolo da form)
 		vehicle = new Vehicle();
 		
@@ -45,15 +37,11 @@ public class ResourceDaoTest {
 		vehicle.setBrand("VOLVO");
 		vehicle.setDisplacement(2000);
 		vehicle.setModel("XC60");
-		vehicle.setPlate("BF490SH");
 		vehicle.setSupplyType("DIESEL");
 		
 		
 	}
 	
-	
-	
-
 	@Test
 	public void addResource() {
 		
@@ -63,10 +51,36 @@ public class ResourceDaoTest {
 		TreeMap<String,Vehicle> vehicles =  resourceController.findAll();
 		
 		Vehicle v = vehicles.get(vehicle.getId());
+		Assert.assertEquals("the vehicle with the plate : "+vehicle.getId()+" is added", vehicle.getId(), v.getId());
+	}
+	
+	@Test
+	public void retrieveResource(){
 		
+		Vehicle v2 = resourceController.getById("EK159NJ");
+		Assert.assertNotNull("the value of the vehicle v2 is correctyly retrieved", v2);
+	}
+	
+	@Test
+	public void updateResource(){
 		
-		Assert.assertEquals("the vehicle with the plate : "+vehicle.getPlate()+" is added", vehicle.getId(), v.getId());
+		vehicle.setId("EK159NJ");
+		resourceController.update(vehicle);
 		
+		Vehicle v3 = resourceController.getById("EK159NJ");
+		
+		Assert.assertEquals("the resource object is correctly updated", "VOLVO", v3.getBrand() );
+		
+	}
+	
+	@Test
+	public void deleteResource(){
+		
+		resourceController.delete("EK159NJ");
+		
+		Vehicle v4 = resourceController.getById("EK159NJ");
+		
+		Assert.assertNull("the resource with id : EK159NJ is correctly removed", v4);
 	}
 
 }
