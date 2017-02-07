@@ -18,7 +18,7 @@ public class ResourceController<T extends Resource> {
 		resourceDao.add(t);
 	}
 	
-	public TreeMap<Integer, T> findAll(){
+	public TreeMap<String, T> findAll(){
 		
 		return resourceDao.findAll();
 	}

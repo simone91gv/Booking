@@ -6,13 +6,13 @@ import pojo.Vehicle;
 
 public class VehicleDao implements ResourceDao<Vehicle> {
 	
-	private TreeMap<Integer, Vehicle> vehicles = new TreeMap<Integer,Vehicle>();
+	private TreeMap<String, Vehicle> vehicles = new TreeMap<String,Vehicle>();
 	
 	public VehicleDao(){
 		
 		//inizializza la lista aggiungendo un vehicle
 		Vehicle v1 = new Vehicle();
-		v1.setId(0);
+		v1.setId("EK159NJ");
 		v1.setBrand("FIAT");
 		v1.setModel("PUNTO");
 		v1.setDescription("The first business car of the company");
@@ -21,25 +21,19 @@ public class VehicleDao implements ResourceDao<Vehicle> {
 		v1.setSupplyType("BENZINA");
 		
 		//aggiunta alla tree map
-		vehicles.put(v1.getId(), v1);
+		vehicles.put(v1.getPlate(), v1);
 	}
 
-	public TreeMap<Integer, Vehicle> findAll() {
+	public TreeMap<String, Vehicle> findAll() {
 		
 		return vehicles;
 	}
 
-	public Vehicle getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void add(Vehicle item) {
 		
-		Integer lastId = vehicles.lastKey();
-		Integer newId = lastId +1;
+		String plate = item.getPlate();
 		
-		vehicles.put(newId, item);
+		vehicles.put(plate, item);
 	}
 
 	public void delete(Vehicle item) {
@@ -48,6 +42,11 @@ public class VehicleDao implements ResourceDao<Vehicle> {
 
 	public void update(Vehicle item) {
 		// TODO Auto-generated method stub
+	}
+
+	public Vehicle getById(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

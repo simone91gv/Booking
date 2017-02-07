@@ -6,9 +6,9 @@ import pojo.Resource;
 
 public interface ResourceDao<T extends Resource> {
 
-	public TreeMap<Integer, T>  findAll();
+	public TreeMap<String, T>  findAll();
 	
-	public T getById(int id);
+	public T getById(String id);
 	
 	public void delete(T item);
 	

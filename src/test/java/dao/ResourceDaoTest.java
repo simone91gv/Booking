@@ -29,14 +29,9 @@ public class ResourceDaoTest {
 		
 		resourceController = new ResourceController<Vehicle>(new VehicleDao());
 		
-		TreeMap<Integer,Vehicle> vlist = resourceController.findAll();
+		TreeMap<String,Vehicle> vlist = resourceController.findAll();
 		
-		if(vlist.size() > 0)
-			System.out.println("fiat presente");
-		else
-			System.out.println("fiat non presente");
-		
-		for(Integer i : vlist.keySet()){
+		for(String i : vlist.keySet()){
 			
 			System.out.println("chiave" + i);
 			System.out.println(vlist.get(i).getBrand()+ " \t" + vlist.get(i).getModel());
@@ -45,6 +40,8 @@ public class ResourceDaoTest {
 		//creazione nuovo veicolo (simulazione di aggiunta nuovo veicolo da form)
 		vehicle = new Vehicle();
 		
+		vehicle.setId("BF490SH");
+		vehicle.setDescription("Nuovo veicolo aggiunto alla flotta aziendale");
 		vehicle.setBrand("VOLVO");
 		vehicle.setDisplacement(2000);
 		vehicle.setModel("XC60");
@@ -57,29 +54,18 @@ public class ResourceDaoTest {
 	
 	
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void addResource() {
 		
 		//aggiunta di un veicolo alla treemap
 		resourceController.add(vehicle);
 		
-		
-		
-		TreeMap<Integer,Vehicle> vehicles =  resourceController.findAll();
+		TreeMap<String,Vehicle> vehicles =  resourceController.findAll();
 		
 		Vehicle v = vehicles.get(vehicle.getId());
 		
 		
-		Assert.assertNotNull("the vehicle is correcty added?",v);
-		
-		System.out.println("*****************************");
-		
-		for(Integer i : vehicles.keySet()){
-			
-			System.out.println("index :"+ i);
-			System.out.println(vehicles.get(i).getBrand()+ " \t" + vehicles.get(i).getModel());
-		}
+		Assert.assertEquals("the vehicle with the plate : "+vehicle.getPlate()+" is added", vehicle.getId(), v.getId());
 		
 	}
 
