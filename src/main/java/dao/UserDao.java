@@ -21,14 +21,14 @@ public class UserDao {
 		
 		User user = new User();
 		user.setUsername("administrator");
-		user.setPassword("administrator");
+		user.setPassword(encryptPassword("admin"));
 		user.setName("Simone");
 		user.setSurname("Guasconi");
 		user.setEmail("guasconi@ariadne.it");
 		user.setPhoneNumber("3388194740");
 		user.setAdmin(true);
 		
-		users.put(user.getPassword(), user);
+		users.put(user.getUsername(), user);
 		
 	}
 	
@@ -51,14 +51,18 @@ public class UserDao {
 		users.remove(username);
 	}
 	
-	public String EncryptPassword(String password){
+	public String encryptPassword(String password){
 	
 		String encryptedPassword = passwordEncryptor.encryptPassword(password);
 		
 		return encryptedPassword;
 	}
 	
-	public boolean CheckDecryptedPassword(String encryptedPassword,String plainPassword){
+	public boolean checkDecryptedPassword(String encryptedPassword,String plainPassword){
+		
+		System.out.println("criptata : "+ encryptedPassword);
+		System.out.println("plain : "+ plainPassword);
+		
 		
 		return passwordEncryptor.checkPassword(plainPassword, encryptedPassword);
 	}

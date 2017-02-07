@@ -16,7 +16,10 @@ public class UserController {
 
 	public void add(User user) {
 		
-		String encryptedPassword = userdao.EncryptPassword(user.getPassword());
+		String encryptedPassword = encryptpassword((user.getPassword()));
+		
+		System.out.println("encryppt : " + encryptedPassword);
+		
 		user.setPassword(encryptedPassword);
 		
 		userdao.add(user);
@@ -29,18 +32,24 @@ public class UserController {
 	public User getuserByUsername(String username){
 		return userdao.getUserByUsername(username);
 	}
+	
 
 	//this method check if the user credentials are correct or not
 	public User performLogin(String username, String password) {
 		
 		User u = userdao.getUserByUsername(username);
+		
 		if(u != null){
-			if(userdao.CheckDecryptedPassword(u.getPassword(), password));
+			if(userdao.checkDecryptedPassword(u.getPassword(), password))
 				return u;
 		}
-		
 		return null;
 	}
+
+	public String encryptpassword(String string) {
+		return userdao.encryptPassword(string);
+	}
+	
 	
 	
 

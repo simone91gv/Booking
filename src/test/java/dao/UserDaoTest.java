@@ -9,7 +9,6 @@ import pojo.User;
 
 public class UserDaoTest {
 
-	private User user;
 	private UserController userController;
 	
 	
@@ -18,26 +17,16 @@ public class UserDaoTest {
 		
 		userController = new UserController(new UserDao());
 
-		user = new User();
-		user.setUsername("administrator");
-		user.setPassword("administrator");
-		user.setName("Simone");
-		user.setSurname("Guasconi");
-		user.setEmail("guasconi@ariadne.it");
-		user.setPhoneNumber("3388194740");
-		user.setAdmin(true);
-		
-		userController.add(user);
-		
 	}
 
 	@Test
 	public void loginTest() {
 		
-		User u = userController.performLogin(user.getUsername(),user.getPassword());
-		
+		User u = userController.performLogin("administrator","admin");
 		Assert.assertNotNull("user credentials correct", u);
 		
+		
+		System.out.println(u.toString());
 	}
 
 }
