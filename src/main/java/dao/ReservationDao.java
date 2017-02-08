@@ -19,12 +19,14 @@ public class ReservationDao {
 	}
 	
 	public void add(Reservation r){
+		
 		try {
-			
 			Integer last = reservations.lastKey();
+			r.setId(++last);
 			reservations.put(++last, r);
 			
 		} catch (Exception e) {
+			r.setId(1);
 			reservations.put(1, r);
 		}
 		

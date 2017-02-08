@@ -59,8 +59,53 @@ public class Vehicle extends Resource implements Serializable {
 	@Override
 	public String toString() {
 		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", supplyType="
-				+ supplyType + ", getId()=" + getId() + ", getDescription()=" + getDescription() + "]";
+				+ supplyType + ", toString()=" + super.toString() + "]";
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+		result = prime * result + displacement;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((supplyType == null) ? 0 : supplyType.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicle other = (Vehicle) obj;
+		if (brand == null) {
+			if (other.brand != null)
+				return false;
+		} else if (!brand.equals(other.brand))
+			return false;
+		if (displacement != other.displacement)
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (supplyType == null) {
+			if (other.supplyType != null)
+				return false;
+		} else if (!supplyType.equals(other.supplyType))
+			return false;
+		return true;
+	}
+
+
+	
 	
 	
 

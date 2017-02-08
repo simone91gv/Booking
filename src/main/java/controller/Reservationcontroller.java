@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import org.joda.time.DateTime;
@@ -8,6 +10,7 @@ import org.joda.time.Interval;
 import dao.ReservationDao;
 import pojo.Reservation;
 import pojo.Resource;
+import pojo.User;
 
 public class Reservationcontroller {
 
@@ -26,6 +29,25 @@ public class Reservationcontroller {
 		this.reservationDao = reservationDao;
 	}
 	
+	public TreeMap<Integer, Reservation> findAll(){
+		return reservationDao.findAll();
+	}
+	
+	public TreeMap<Integer, Reservation> findByUser(User u){
+		
+		TreeMap<Integer, Reservation> userReservations = new TreeMap<Integer, Reservation>();
+		
+		TreeMap<Integer, Reservation> reservations = reservationDao.findAll();
+		
+		for(Integer key : reservations.keySet()){
+			
+			Reservation r = reservations.get(key);
+			if(r.getUser().equals(u))
+				userReservations.put(key, r);
+		}
+		
+		return userReservations;
+	}
 	
 
 	//this method tries to serve a reservation request
@@ -57,6 +79,26 @@ public class Reservationcontroller {
 		
 		return true;
 	}
+
+	//this method returns a map of all the active user reservations
+	//it returns true if:
+	//case1 : active = true (possibility to have a resource expired but not released)
+	//case2 :  begindate<now<enddate (the resource is currently owned by the user) 
+	public TreeMap<Integer, Reservation> getActiveReservationsByUser(User u) {
 	
+		TreeMap<Integer, Reservation> activeReservations = new TreeMap<Integer, Reservation>();
+		TreeMap<Integer, Reservation> reservations = this.findByUser(u);
+		
+		for(Integer key : reservations.keySet()){
+			
+			Reservation dbr = reservations.get(key);
+			
+			if(( (dbr.isActive()) || (dbr.getBeginDate().isBeforeNow() && dbr.getEndDate().isAfterNow()) == true)){
+				activeReservations.put(key, dbr);
+			}
+		}
+		
+		return activeReservations;	
+	}
 	
 }

@@ -18,8 +18,6 @@ public class UserController {
 		
 		String encryptedPassword = encryptpassword((user.getPassword()));
 		
-		System.out.println("encryppt : " + encryptedPassword);
-		
 		user.setPassword(encryptedPassword);
 		
 		userdao.add(user);

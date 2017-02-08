@@ -22,6 +22,36 @@ public class OfficeRoom extends Resource implements Serializable {
 		this.floor = floor;
 	}
 	
+	@Override
+	public String toString() {
+		return "OfficeRoom [capacity=" + capacity + ", floor=" + floor + ", toString()=" + super.toString() + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + capacity;
+		result = prime * result + floor;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OfficeRoom other = (OfficeRoom) obj;
+		if (capacity != other.capacity)
+			return false;
+		if (floor != other.floor)
+			return false;
+		return true;
+	}
+	
 	
 	
 }
