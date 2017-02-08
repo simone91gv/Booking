@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.ResourceController;
-import junit.framework.Assert;
+import org.junit.*;
 import pojo.Vehicle;
 
 /**
@@ -29,6 +29,8 @@ public class ResourceDaoTest {
 		
 		resourceController = new ResourceController<Vehicle>(new VehicleDao());
 		
+		
+		
 		//creazione nuovo veicolo (simulazione di aggiunta nuovo veicolo da form)
 		vehicle = new Vehicle();
 		
@@ -38,8 +40,7 @@ public class ResourceDaoTest {
 		vehicle.setDisplacement(2000);
 		vehicle.setModel("XC60");
 		vehicle.setSupplyType("DIESEL");
-		
-		
+			
 	}
 	
 	@Test
