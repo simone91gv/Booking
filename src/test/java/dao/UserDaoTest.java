@@ -24,9 +24,6 @@ public class UserDaoTest {
 		
 		User u = userController.performLogin("administrator","admin");
 		Assert.assertNotNull("user credentials correct", u);
-		
-		
-		System.out.println(u.toString());
 	}
 
 }
