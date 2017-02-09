@@ -17,6 +17,7 @@ public class VehicleDao implements ResourceDao<Vehicle> {
 		v1.setModel("PUNTO");
 		v1.setDescription("The first business car of the company");
 		v1.setDisplacement(1400);
+		v1.setSeats(5);
 		v1.setSupplyType("DIESEL");
 		
 		//aggiunta alla tree map

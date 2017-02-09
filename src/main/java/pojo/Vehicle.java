@@ -9,6 +9,7 @@ public class Vehicle extends Resource implements Serializable {
 	private String brand;
 	private String model;
 	private int displacement;
+	private int seats;
 	private String supplyType;
 	
 	
@@ -54,15 +55,20 @@ public class Vehicle extends Resource implements Serializable {
 	public void setSupplyType(String supplyType) {
 		this.supplyType = supplyType;
 	}
+	
+	public int getSeats() {
+		return seats;
+	}
 
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
 
 	@Override
 	public String toString() {
-		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", supplyType="
-				+ supplyType + ", toString()=" + super.toString() + "]";
+		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", seats=" + seats
+				+ ", supplyType=" + supplyType + ", toString()=" + super.toString() + "]";
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
