@@ -30,6 +30,9 @@ public class Reservationcontroller {
 		return reservationDao.findAll();
 	}
 	
+	
+	//this meethod returns all the reservations of the user.
+	//it returns both active and made reservations.
 	public TreeMap<Integer, Reservation> findByUser(User u){
 		
 		TreeMap<Integer, Reservation> userReservations = new TreeMap<Integer, Reservation>();
@@ -44,6 +47,22 @@ public class Reservationcontroller {
 		}
 		
 		return userReservations;
+	}
+	
+	public TreeMap<Integer, Reservation> findByResource(Resource r) {
+
+		TreeMap<Integer, Reservation> ResourceReservations = new TreeMap<Integer, Reservation>();
+		
+		TreeMap<Integer, Reservation> reservations = reservationDao.findAll();
+		
+		for(Integer key : reservations.keySet()){
+			
+			Reservation reservation = reservations.get(key);
+			if(reservation.getResource().equals(r))
+				ResourceReservations.put(key, reservation);
+		}
+		
+		return ResourceReservations;
 	}
 	
 
@@ -78,7 +97,7 @@ public class Reservationcontroller {
 	}
 	
 	//this method returns a map of all the active user reservations
-	//it returns true if:
+	//it checks reservations with:
 	//case1 : active = true (possibility to have a resource expired but not released)
 	//case2 :  begindate<now<enddate (the resource is currently owned by the user) 
 	public TreeMap<Integer, Reservation> getActiveReservationsByUser(User u) {
@@ -97,5 +116,27 @@ public class Reservationcontroller {
 		
 		return activeReservations;	
 	}
+
+	//this method returns a map of all the made user reservations
+	//it checks reservations with:
+	//case1 : active = false (the user has returned the given resource)
+	public TreeMap<Integer, Reservation> getMadeReservationsByUser(User u) {
+		
+		TreeMap<Integer, Reservation> madeReservations = new TreeMap<Integer, Reservation>();
+		TreeMap<Integer, Reservation> reservations = this.findByUser(u);
+		
+		for(Integer key : reservations.keySet()){
+			
+			Reservation dbr = reservations.get(key);
+			
+			if(!dbr.isActive()){
+				madeReservations.put(key, dbr);
+			}
+		}
+		
+		return madeReservations;
+	}
+
+	
 	
 }

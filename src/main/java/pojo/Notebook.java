@@ -73,18 +73,6 @@ public class Notebook extends Resource implements Serializable {
 				+ processor + ", ram=" + ram + ", Usb3=" + Usb3 + ", toString()=" + super.toString() + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + (Usb3 ? 1231 : 1237);
-		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
-		result = prime * result + ((hardDiskType == null) ? 0 : hardDiskType.hashCode());
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((processor == null) ? 0 : processor.hashCode());
-		result = prime * result + ram;
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {

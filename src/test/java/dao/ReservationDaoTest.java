@@ -11,7 +11,9 @@ import org.junit.Test;
 import controller.Reservationcontroller;
 import controller.ResourceController;
 import controller.UserController;
+import pojo.Notebook;
 import pojo.Reservation;
+import pojo.Resource;
 import pojo.User;
 import pojo.Vehicle;
 
@@ -22,9 +24,11 @@ public class ReservationDaoTest {
 	private User user;
 	private User user2;
 	private Vehicle v;
+	private Notebook n;
 	
 	private UserController userController;
 	private ResourceController<Vehicle> resourceController;
+	private ResourceController<Notebook> resourceController2; 
 	private Reservationcontroller reservationController;
 	
 	@Before
@@ -58,6 +62,9 @@ public class ReservationDaoTest {
 		resourceController = new ResourceController<Vehicle>(new VehicleDao());
 	    v = resourceController.getById("EK159NJ");
 	    
+	    resourceController2 = new ResourceController<Notebook>(new NotebookDao());
+	    n = resourceController2.getById("N000000001"); 
+	    
 	    DateTime beginDate = new DateTime(2017,2,8, 17, 00);
 	    DateTime endDate = new DateTime(2017,2,8, 18, 00);
 	    
@@ -89,7 +96,7 @@ public class ReservationDaoTest {
 		
 		reservation = new Reservation();
 		reservation.setUser(user);
-		reservation.setResource(v);
+		reservation.setResource(n);
 		reservation.setBeginDate(beginDate3);
 		reservation.setActive(false);
 		reservation.setEndDate(endDate3);
@@ -132,8 +139,44 @@ public class ReservationDaoTest {
 			System.out.println(activeuserReservations.get(key));
 		}
 		
-		Assert.assertEquals(1, activeuserReservations.size());
+		Assert.assertEquals(0, activeuserReservations.size());
 		
 	}
+	
+	@Test
+	public void ListOfUserMadeReservations(){
+		
+		User u = userController.getuserByUsername("SimoneGuasconi");
+		
+		TreeMap<Integer,Reservation> madeuserReservations = reservationController.getMadeReservationsByUser(u);
+		
+		for(Integer key : madeuserReservations.keySet()){
+			
+			System.out.println(madeuserReservations.get(key));
+		}
+		
+		Assert.assertEquals(2, madeuserReservations.size());
+		
+	}
+	
+	@Test
+	public void ListOfResourceReservations(){
+		
+		Resource r = resourceController.getById("EK159NJ");
+		
+		TreeMap<Integer,Reservation> resourceReservations = reservationController.findByResource(r);
+		
+		for(Integer key : resourceReservations.keySet()){
+			
+			System.out.println(resourceReservations.get(key));
+		}
+		
+		Assert.assertEquals(2, resourceReservations.size());
+		
+		
+		
+	}
+	
+	
 
 }

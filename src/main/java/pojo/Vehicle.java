@@ -63,17 +63,6 @@ public class Vehicle extends Resource implements Serializable {
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
-		result = prime * result + displacement;
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((supplyType == null) ? 0 : supplyType.hashCode());
-		return result;
-	}
-
 
 	@Override
 	public boolean equals(Object obj) {

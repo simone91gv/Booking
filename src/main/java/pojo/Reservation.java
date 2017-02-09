@@ -65,19 +65,7 @@ public class Reservation implements Serializable {
 		return "Reservation [id=" + id + ", user=" + user + ", resource=" + resource + ", beginDate=" + beginDate
 				+ ", endDate=" + endDate + ", active=" + active + ", returnDate=" + returnDate + "]";
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
-		result = prime * result + ((beginDate == null) ? 0 : beginDate.hashCode());
-		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((resource == null) ? 0 : resource.hashCode());
-		result = prime * result + ((returnDate == null) ? 0 : returnDate.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
-		return result;
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

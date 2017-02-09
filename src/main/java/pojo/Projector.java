@@ -41,15 +41,7 @@ public class Projector extends Resource implements Serializable {
 				+ super.toString() + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((brand == null) ? 0 : brand.hashCode());
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((resolution == null) ? 0 : resolution.hashCode());
-		return result;
-	}
+
 
 	@Override
 	public boolean equals(Object obj) {
