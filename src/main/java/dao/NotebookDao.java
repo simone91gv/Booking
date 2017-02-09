@@ -18,7 +18,7 @@ public class NotebookDao implements ResourceDao<Notebook> {
 		n1.setDescription("The first business car of the company");
 		n1.setHardDiskType("HDD");
 		n1.setProcessor("I7 2800Ghz");
-		n1.setRam(8);
+		n1.setRam(4);
 		n1.setUsb3(true);
 		
 		//aggiunta alla tree map

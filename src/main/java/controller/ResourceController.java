@@ -40,8 +40,4 @@ public class ResourceController<T extends Resource> {
 	
 	
 	
-	
-	
-	
-
 }
