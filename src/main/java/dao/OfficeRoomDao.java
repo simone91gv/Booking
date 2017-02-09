@@ -1,18 +1,17 @@
 package dao;
 
 import java.util.TreeMap;
-
 import pojo.OfficeRoom;
 
 public class OfficeRoomDao implements ResourceDao<OfficeRoom> {
 	
-	private TreeMap<String, OfficeRoom> officeRooms;
+	private TreeMap<String, OfficeRoom> officeRooms =  new TreeMap<String,OfficeRoom>();
 
 	public OfficeRoomDao() {
 		
 		//inizializza la lista aggiungendo un vehicle
 		OfficeRoom or1 = new OfficeRoom();
-		or1.setId("Aula riunione 001");
+		or1.setId("OR000000001");
 		or1.setCapacity(40);
 		or1.setFloor(-1);
 		

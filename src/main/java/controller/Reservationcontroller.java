@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
-import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 import dao.ReservationDao;
@@ -79,7 +76,7 @@ public class Reservationcontroller {
 		
 		return true;
 	}
-
+	
 	//this method returns a map of all the active user reservations
 	//it returns true if:
 	//case1 : active = true (possibility to have a resource expired but not released)

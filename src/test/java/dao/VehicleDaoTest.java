@@ -2,11 +2,11 @@ package dao;
 
 import java.util.TreeMap;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import controller.ResourceController;
-import org.junit.*;
 import pojo.Vehicle;
 
 /**
@@ -17,8 +17,7 @@ import pojo.Vehicle;
  * This will be replaced by an admin page that will handles all the resource instances(crud).
  *
  */
-@SuppressWarnings("deprecation")
-public class ResourceDaoTest {
+public class VehicleDaoTest {
 	
 	private Vehicle vehicle;
 	private ResourceController<Vehicle> resourceController;

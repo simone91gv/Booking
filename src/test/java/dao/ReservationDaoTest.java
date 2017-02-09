@@ -12,7 +12,6 @@ import controller.Reservationcontroller;
 import controller.ResourceController;
 import controller.UserController;
 import pojo.Reservation;
-import pojo.Resource;
 import pojo.User;
 import pojo.Vehicle;
 

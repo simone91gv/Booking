@@ -6,13 +6,13 @@ import pojo.Projector;
 
 public class ProjectorDao implements ResourceDao<Projector> {
 	
-	private TreeMap<String, Projector> projectors;
+	private TreeMap<String, Projector> projectors = new TreeMap<String, Projector>();
 	
 	public ProjectorDao(){
 		
 		//inizializza la lista aggiungendo un vehicle
 		Projector p1 = new Projector();
-		p1.setId("0000000012");
+		p1.setId("P000000001");
 		p1.setBrand("HP");
 		p1.setModel("15sq15");
 		p1.setResolution("1080dpi");

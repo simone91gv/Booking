@@ -10,9 +10,9 @@ public class NotebookDao implements ResourceDao<Notebook> {
 	
 	public NotebookDao() {
 	
-		//inizializza la lista aggiungendo un vehicle
+		//inizializza la lista aggiungendo un notebook
 		Notebook n1 = new Notebook();
-		n1.setId("000000001");
+		n1.setId("N000000001");
 		n1.setBrand("LENOVO");
 		n1.setModel("XSD");
 		n1.setDescription("The first business car of the company");
