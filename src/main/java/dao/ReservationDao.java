@@ -23,7 +23,7 @@ public class ReservationDao {
 		try {
 			Integer last = reservations.lastKey();
 			r.setId(++last);
-			reservations.put(++last, r);
+			reservations.put(last++, r);
 			
 		} catch (Exception e) {
 			r.setId(1);
@@ -36,8 +36,8 @@ public class ReservationDao {
 		reservations.put(r.getId(),r);
 	}
 	
-	public void delete(String username){
-		reservations.remove(username);
+	public void delete(Integer idReservation){
+		reservations.remove(idReservation);
 	}
 	
 	

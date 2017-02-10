@@ -137,6 +137,10 @@ public class Reservationcontroller {
 		return madeReservations;
 	}
 
+	public void cancelReservation(Reservation r) {
+			reservationDao.delete(r.getId());
+	}
+
 	
 	
 }

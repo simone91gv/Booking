@@ -134,12 +134,7 @@ public class ReservationDaoTest {
 		
 		TreeMap<Integer,Reservation> activeuserReservations = reservationController.getActiveReservationsByUser(u);
 		
-		for(Integer key : activeuserReservations.keySet()){
-			
-			System.out.println(activeuserReservations.get(key));
-		}
-		
-		Assert.assertEquals(0, activeuserReservations.size());
+		Assert.assertEquals(1, activeuserReservations.size());
 		
 	}
 	
@@ -149,11 +144,6 @@ public class ReservationDaoTest {
 		User u = userController.getuserByUsername("SimoneGuasconi");
 		
 		TreeMap<Integer,Reservation> madeuserReservations = reservationController.getMadeReservationsByUser(u);
-		
-		for(Integer key : madeuserReservations.keySet()){
-			
-			System.out.println(madeuserReservations.get(key));
-		}
 		
 		Assert.assertEquals(2, madeuserReservations.size());
 		
@@ -166,17 +156,34 @@ public class ReservationDaoTest {
 		
 		TreeMap<Integer,Reservation> resourceReservations = reservationController.findByResource(r);
 		
-		for(Integer key : resourceReservations.keySet()){
-			
-			System.out.println(resourceReservations.get(key));
-		}
-		
 		Assert.assertEquals(2, resourceReservations.size());
-		
-		
-		
+	
 	}
 	
+	@Test
+	public void cancelReservation(){
+		
+		Reservation reservation = null;
+		
+		//retrive of the logged user simulation
+		User u = userController.getuserByUsername("SimoneGuasconi");
+		
+		TreeMap<Integer,Reservation> userActiveReservations =  reservationController.getActiveReservationsByUser(u);
+		int sizeBeforeDeletion = userActiveReservations.size();
+		
+		//the user decides to delete the first active reservation
+		for(Integer key : userActiveReservations.keySet()){
+			 reservation = userActiveReservations.get(key);
+			break;
+		}
+
+		reservationController.cancelReservation(reservation);
+		
+		TreeMap<Integer,Reservation>  userActiveReservations2 =  reservationController.getActiveReservationsByUser(u);
+		int sizeAfterDeletion = userActiveReservations2.size();
+		
+		Assert.assertEquals(sizeBeforeDeletion, sizeAfterDeletion+1);	
+	}
 	
 
 }
