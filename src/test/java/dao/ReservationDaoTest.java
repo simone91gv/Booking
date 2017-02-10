@@ -165,7 +165,7 @@ public class ReservationDaoTest {
 		
 		Reservation reservation = null;
 		
-		//retrive of the logged user simulation
+		//retrieve of the logged user simulation
 		User u = userController.getuserByUsername("SimoneGuasconi");
 		
 		TreeMap<Integer,Reservation> userActiveReservations =  reservationController.getActiveReservationsByUser(u);
@@ -184,6 +184,7 @@ public class ReservationDaoTest {
 		
 		Assert.assertEquals(sizeBeforeDeletion, sizeAfterDeletion+1);	
 	}
+	
 	
 
 }

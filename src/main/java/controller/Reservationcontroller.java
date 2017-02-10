@@ -2,9 +2,14 @@ package controller;
 
 import java.util.TreeMap;
 
+import javax.swing.InternalFrameFocusTraversalPolicy;
+
+import org.joda.time.DateTime;
 import org.joda.time.Interval;
+import org.junit.experimental.theories.internal.ParameterizedAssertionError;
 
 import dao.ReservationDao;
+import pojo.Notebook;
 import pojo.Reservation;
 import pojo.Resource;
 import pojo.User;
@@ -117,6 +122,24 @@ public class Reservationcontroller {
 		return activeReservations;	
 	}
 
+	public TreeMap<Integer, Reservation> getActiveReservationsByResource(Resource r) {
+		
+		TreeMap<Integer, Reservation> activeReservations = new TreeMap<Integer, Reservation>();
+		TreeMap<Integer, Reservation> reservations = this.findByResource(r);
+		
+		for(Integer key : reservations.keySet()){
+			
+			Reservation dbr = reservations.get(key);
+			
+			if(( (dbr.isActive()) || (dbr.getBeginDate().isBeforeNow() && dbr.getEndDate().isAfterNow()) == true)){
+				activeReservations.put(key, dbr);
+			}
+		}
+		
+		return activeReservations;	
+		
+	}
+
 	//this method returns a map of all the made user reservations
 	//it checks reservations with:
 	//case1 : active = false (the user has returned the given resource)
@@ -139,6 +162,47 @@ public class Reservationcontroller {
 
 	public void cancelReservation(Reservation r) {
 			reservationDao.delete(r.getId());
+	}
+
+	public DateTime findFirstResourceAvailability(Resource r, int hours, int minutes, DateTime beginSeachDate,DateTime endSeachDate) {
+		
+		TreeMap<Integer,Reservation> resourceActiveReservations = getActiveReservationsByResource(r);
+		DateTime partialEndDate;
+		Interval partialinterval;
+		Interval storedInterval;
+		Reservation reservation;
+		
+		boolean busyinterval = false;
+		
+		while(beginSeachDate.isBefore(endSeachDate)){
+			
+			partialEndDate = beginSeachDate.plusHours(hours).plusMinutes(minutes);
+			
+			partialinterval = new Interval(beginSeachDate,partialEndDate);
+			
+			//check if there is some reservations that overlaps with this interval
+			for(Integer key : resourceActiveReservations.keySet()){
+				
+				reservation = resourceActiveReservations.get(key);
+				storedInterval = new Interval(reservation.getBeginDate(),reservation.getEndDate());
+				
+				if((partialinterval.overlaps(storedInterval))){
+					busyinterval = true;
+					break;
+				}
+				else
+					busyinterval = false;
+				
+			}
+			
+			if(busyinterval == false)
+				return beginSeachDate;
+			
+			
+			beginSeachDate = beginSeachDate.plusMinutes(30);
+		}
+		
+		return null;
 	}
 
 	
