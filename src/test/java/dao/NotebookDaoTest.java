@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.NotebookController;
 import controller.ResourceController;
 import pojo.Notebook;
 
@@ -22,7 +21,6 @@ public class NotebookDaoTest {
 	
 	private Notebook notebook;
 	private ResourceController<Notebook> resourceController;
-	private NotebookController notebookController;
 	
 
 	@Before
@@ -31,7 +29,6 @@ public class NotebookDaoTest {
 		NotebookDao notebookDao = new NotebookDao();
 		
 		resourceController = new ResourceController<Notebook>(notebookDao);
-		notebookController = new NotebookController(notebookDao);
 		
 		
 		//creazione nuovo veicolo (simulazione di aggiunta nuovo veicolo da form)
@@ -89,13 +86,6 @@ public class NotebookDaoTest {
 		Assert.assertNull("the resource with id : N000000001 is correctly removed", v4);
 	}
 	
-	@Test
-	public void getNotebooksWithMinRam(){
-		
-		TreeMap<String,Notebook> notebooks = notebookController.getNotebookWithMinRam(4);
-		
-		Assert.assertEquals("numero di notebooks con ram > 2", 1, notebooks.size());
-		
-	}
+
 
 }

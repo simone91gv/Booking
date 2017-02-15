@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.ResourceController;
-import controller.VehicleController;
 import pojo.Notebook;
 import pojo.Vehicle;
 
@@ -23,7 +22,6 @@ public class VehicleDaoTest {
 	
 	private Vehicle vehicle;
 	private ResourceController<Vehicle> resourceController;
-	private VehicleController vehicleController;
 	
 
 	@Before
@@ -31,7 +29,6 @@ public class VehicleDaoTest {
 		
 		VehicleDao vehicleDao = new VehicleDao(); 
 		resourceController = new ResourceController<Vehicle>(vehicleDao);
-		vehicleController = new VehicleController(vehicleDao);
 		
 		
 		//creazione nuovo veicolo (simulazione di aggiunta nuovo veicolo da form)
@@ -87,13 +84,6 @@ public class VehicleDaoTest {
 		Assert.assertNull("the resource with id : EK159NJ is correctly removed", v4);
 	}
 	
-	@Test
-	public void getVehicleWithMinimunSeats(){
-		
-		TreeMap<String,Vehicle> vehicles = vehicleController.getVehiclesWithMinSeats(4);
-		
-		Assert.assertEquals("numero di vehicle with seats > 2", 1, vehicles.size());
-		
-	}
+	
 
 }
