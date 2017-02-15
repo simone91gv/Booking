@@ -110,5 +110,15 @@ public class Notebook extends Resource implements Serializable {
 		return true;
 	}
 	
+	@Override
+	public boolean filterByContraint(int minimum) {
+		
+		if(ram >= minimum)
+			return true;
+		else
+			return false;
+		
+	}
+	
 	
 }

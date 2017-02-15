@@ -18,6 +18,8 @@ public abstract class Resource {
 		this.description = description;
 	}
 	
+	public abstract boolean filterByContraint(int minimum);
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

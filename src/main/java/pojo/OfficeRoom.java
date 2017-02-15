@@ -45,6 +45,15 @@ public class OfficeRoom extends Resource implements Serializable {
 		return true;
 	}
 	
+	@Override
+	public boolean filterByContraint(int minimum) {
+		
+		if(capacity >= minimum)
+			return true;
+		else
+			return false;
+		
+	}
 	
 	
 }

@@ -38,6 +38,21 @@ public class ResourceController<T extends Resource> {
 		resourceDao.delete(id);
 	}
 	
+	public TreeMap<String, T> getResourceFiltered(int minimum){
+		
+		TreeMap<String, T> resources = resourceDao.findAll();
+		TreeMap<String, T> resourcesFiltered = new TreeMap<String,T>();
+		
+		
+		for(String resourceId : resources.keySet()){
+			
+			T resource = resources.get(resourceId);
+			if(resource.filterByContraint(minimum))
+				resourcesFiltered.put(resourceId, resource);
+		}
+		
+		return resourcesFiltered;
+	}
 	
 	
 }

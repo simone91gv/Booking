@@ -63,7 +63,7 @@ public class Vehicle extends Resource implements Serializable {
 	public void setSeats(int seats) {
 		this.seats = seats;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Vehicle [brand=" + brand + ", model=" + model + ", displacement=" + displacement + ", seats=" + seats
@@ -97,6 +97,17 @@ public class Vehicle extends Resource implements Serializable {
 		} else if (!supplyType.equals(other.supplyType))
 			return false;
 		return true;
+	}
+
+
+	@Override
+	public boolean filterByContraint(int minimum) {
+		
+		if(seats >= minimum)
+			return true;
+		else
+			return false;
+		
 	}
 
 

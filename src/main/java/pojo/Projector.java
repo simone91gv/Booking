@@ -70,7 +70,12 @@ public class Projector extends Resource implements Serializable {
 		return true;
 	}
 	
-	
+	@Override
+	public boolean filterByContraint(int minimum) {
+		
+		//TODO: IDENTIFY A VALID INT CONSTRAINT FOR THE FILTER 
+		return true;
+	}
 	
 	
 	

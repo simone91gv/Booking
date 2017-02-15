@@ -2,14 +2,10 @@ package controller;
 
 import java.util.TreeMap;
 
-import javax.swing.InternalFrameFocusTraversalPolicy;
-
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import org.junit.experimental.theories.internal.ParameterizedAssertionError;
 
 import dao.ReservationDao;
-import pojo.Notebook;
 import pojo.Reservation;
 import pojo.Resource;
 import pojo.User;
@@ -71,7 +67,7 @@ public class Reservationcontroller {
 	}
 	
 
-	//this method tries to serve a reservation request
+	// this method tries to serve a reservation request
 	// return value: TRUE 	--> reservation made with success
 	// return value: FALSE 	--> reservation impossible to made another reservation is in action
 	public boolean performReservation(Reservation reservation) {
